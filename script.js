@@ -25,12 +25,6 @@ const patience = [
   'Tu personalidad es mi lugar seguro.'
 ];
 
-const extras = [
-  'Eres mi canción favorita en repeat.',
-  'Si me pierdo, búscame en tus brazos.',
-  'Gracias por ser mi lugar seguro.'
-];
-
 // --- Secciones ---
 const sections = {
   home: document.getElementById('home'),
@@ -51,24 +45,22 @@ function showSection(name) {
   Object.values(buttons).forEach(btn => btn.classList.remove('active'));
   buttons[name].classList.add('active');
 
-  showRandomPhrase(name);
+  if (name === 'home') showRandomPhrase(loveShort);
+  if (name === 'carta') showRandomPhrase(patience);
 }
 
-buttons.home.addEventListener('click', () => showSection('home'));
-buttons.carta.addEventListener('click', () => showSection('carta'));
-buttons.musica.addEventListener('click', () => showSection('musica'));
-
 // --- Frases aleatorias ---
-function showRandomPhrase(page) {
-  let pool = [];
-  if (page === 'home') pool = loveShort;
-  if (page === 'carta') pool = patience;
-
+function showRandomPhrase(pool) {
   const phraseBox = document.getElementById('phraseBox');
   if (phraseBox) {
     phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
   }
 }
+
+// --- Navegación ---
+buttons.home.addEventListener('click', () => showSection('home'));
+buttons.carta.addEventListener('click', () => showSection('carta'));
+buttons.musica.addEventListener('click', () => showSection('musica'));
 
 // --- Galería de fotos ---
 const imgs = ['yop.jpg', 'us.jpg', 'tuyyo.jpg', '22.jpg', 'LL.jpg', 'H.jpg', 'L.jpg', 'B.jpg', 'jh.jpg', 'jj.png', 'N.jpg', 'Ñ.jpg', 'O.jpg', 'Y.jpg'];
@@ -82,7 +74,6 @@ imgs.forEach(name => {
   div.appendChild(img);
   gallery.appendChild(div);
 
-  // corazones al pasar el mouse
   div.addEventListener('mouseenter', () => {
     for (let i = 0; i < 5; i++) {
       setTimeout(() => {
@@ -123,21 +114,9 @@ function playPause() {
   if (audio.paused) {
     audio.play();
     playBtn.textContent = '⏸️';
-    document.querySelector('.mp3-player').classList.add('playing');
-
-    for (let i = 0; i < 3; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.textContent = '✨';
-      sparkle.style.left = (window.innerWidth / 2 + (Math.random() * 100 - 50)) + 'px';
-      sparkle.style.top = (window.innerHeight / 2 + (Math.random() * 60 - 30)) + 'px';
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 1800);
-    }
   } else {
     audio.pause();
     playBtn.textContent = '▶️';
-    document.querySelector('.mp3-player').classList.remove('playing');
   }
 }
 
@@ -146,7 +125,6 @@ function nextTrack() {
   loadTrack(currentTrack);
   audio.play();
   playBtn.textContent = '⏸️';
-  document.querySelector('.mp3-player').classList.add('playing');
 }
 
 function prevTrack() {
@@ -154,19 +132,11 @@ function prevTrack() {
   loadTrack(currentTrack);
   audio.play();
   playBtn.textContent = '⏸️';
-  document.querySelector('.mp3-player').classList.add('playing');
 }
 
 playBtn.addEventListener('click', playPause);
 document.getElementById('nextTrack').addEventListener('click', nextTrack);
 document.getElementById('prevTrack').addEventListener('click', prevTrack);
-
-// Autoplay inicial
-window.addEventListener('load', () => {
-  loadTrack(currentTrack);
-  audio.volume = 0.3;
-  showRandomPhrase('home');
-});
 
 // --- Sorpresa mágica ---
 const btnSorpresa = document.getElementById('btnSorpresa');
@@ -174,14 +144,11 @@ const sorpresaBox = document.getElementById('sorpresaBox');
 
 btnSorpresa.addEventListener('click', () => {
   sorpresaBox.classList.toggle('oculto');
+});
 
-  for (let i = 0; i < 5; i++) {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.textContent = '✨';
-    sparkle.style.left = (window.innerWidth / 2 + (Math.random() * 100 - 50)) + 'px';
-    sparkle.style.top = (window.innerHeight / 2 + (Math.random() * 60 - 30)) + 'px';
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 1800);
-  }
+// --- Inicio automático ---
+window.addEventListener('load', () => {
+  loadTrack(currentTrack);
+  audio.volume = 0.3;
+  showRandomPhrase(loveShort);
 });
