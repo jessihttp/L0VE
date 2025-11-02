@@ -1,22 +1,18 @@
-/* Tipografía y base */
+/* Base */
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
-  background: #fff0f5; /* rosa suave */
-  color: #333; /* mejor contraste */
+  background: #fff6fa;
+  color: #444;
 }
 
+/* Títulos */
 h2, h3, h4 {
   font-family: 'Indie Flower', cursive;
   color: #d94f8c;
 }
 
-p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* Estructura general */
+/* Contenedor principal */
 .wrap {
   max-width: 1000px;
   margin: auto;
@@ -28,10 +24,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffd6e8;
+  background: #ffe3ed;
   padding: 10px 20px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
 }
 
 .logo {
@@ -56,38 +51,27 @@ nav {
 }
 
 nav button {
-  background: #ffc0cb;
+  background: #ffd1e8;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
   font-family: 'Patrick Hand', cursive;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-nav button:hover {
-  background: #ffb6c1;
 }
 
 nav button.active {
-  background: #ff8fb1;
+  background: #ff9dbb;
   color: white;
 }
 
 /* Secciones */
 .card {
   display: none;
-  animation: fadeIn 0.6s ease-in-out;
 }
 
 .card.show {
   display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Hero */
@@ -101,21 +85,19 @@ nav button.active {
 .art img {
   max-width: 300px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
 }
 
 .txt {
   flex: 1;
 }
 
-/* Frases y cajas */
-.phrase, .sorpresa, .side-box {
+/* Frases */
+.phrase {
   font-family: 'Patrick Hand', cursive;
-  font-size: 1.1rem;
-  background: #ffe4ec;
-  padding: 12px;
+  font-size: 1.2rem;
+  background: #fff;
+  padding: 10px;
   border-radius: 12px;
-  box-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
   margin-top: 10px;
   color: #444;
 }
@@ -123,7 +105,7 @@ nav button.active {
 /* Galería */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
   padding: 20px;
   justify-items: center;
@@ -135,12 +117,6 @@ nav button.active {
   height: 140px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 0 8px rgba(255, 182, 193, 0.6);
-  transition: transform 0.3s ease;
-}
-
-.photo img:hover {
-  transform: scale(1.05);
 }
 
 /* Carta */
@@ -149,7 +125,6 @@ nav button.active {
   max-width: 180px;
   border-radius: 12px;
   margin: 10px 0;
-  box-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
 }
 
 /* Sorpresa */
@@ -161,7 +136,13 @@ nav button.active {
   font-family: 'Indie Flower', cursive;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: 10px;
+}
+
+.sorpresa {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 12px;
 }
 
 .sorpresa img {
@@ -176,10 +157,9 @@ nav button.active {
 
 /* Reproductor musical */
 .mp3-player {
-  background: #ffe4ec;
+  background: #ffeef4;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
   text-align: center;
   margin-bottom: 20px;
 }
@@ -190,10 +170,6 @@ nav button.active {
   margin-bottom: 10px;
 }
 
-.player-controls {
-  margin-top: 10px;
-}
-
 .btn-row button {
   background: #ffb6c1;
   border: none;
@@ -202,11 +178,6 @@ nav button.active {
   border-radius: 12px;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-row button:hover {
-  background: #ff8fb1;
 }
 
 #trackName {
@@ -226,7 +197,6 @@ nav button.active {
 .mini-banners img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
 }
 
 /* Footer */
@@ -236,31 +206,6 @@ nav button.active {
   font-size: 1.2rem;
   margin-top: 30px;
   padding: 10px;
-  background: #ffd6e8;
+  background: #ffe3ed;
   border-radius: 12px;
-  box-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
-}
-
-/* Corazones flotantes */
-.heart {
-  position: absolute;
-  animation: floatUp 1.2s ease-out forwards;
-}
-
-@keyframes floatUp {
-  0% { opacity: 0; transform: translateY(20px) scale(0.8); }
-  100% { opacity: 1; transform: translateY(-40px) scale(1.2); }
-}
-
-/* Estrellitas mágicas */
-.sparkle {
-  position: fixed;
-  font-size: 1.5rem;
-  animation: sparkleFade 1.8s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes sparkleFade {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(2); }
 }
