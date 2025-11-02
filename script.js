@@ -69,13 +69,13 @@ function showRandomPhrase(page) {
 }
 
 // --- Galería de fotos ---
-const imgs = ['yop.jpg', 'us.jpg', 'tuyyo.jpg', '22.jpg', 'LL.jpg', 'H.jpg', 'L.jpg', 'B.jpg', 'jh.jpg', 'jj.png' , 'N.jpg' , 'Ñ.jpg' ,'O.jpg' , 'Y.jpg'];
+const imgs = ['yop.jpg', 'us.jpg', 'tuyyo.jpg', '22.jpg', 'LL.jpg', 'H.jpg', 'L.jpg', 'B.jpg', 'jh.jpg', 'jj.png', 'N.jpg', 'Ñ.jpg', 'O.jpg', 'Y.jpg'];
 const gallery = document.getElementById('gallery');
 imgs.forEach(name => {
   const div = document.createElement('div');
   div.className = 'photo';
   const img = document.createElement('img');
-  img.src = 'img/' + name;
+  img.src = name;
   img.alt = name;
   div.appendChild(img);
   gallery.appendChild(div);
@@ -112,9 +112,9 @@ const tracks = [
 let currentTrack = 0;
 
 function loadTrack(index) {
-  audio.src = 'MP3/' + tracks[index].file;
+  audio.src = tracks[index].file;
   trackName.textContent = tracks[index].file;
-  trackImage.src = 'img/' + tracks[index].img;
+  trackImage.src = tracks[index].img;
 }
 
 function playPause() {
@@ -123,7 +123,6 @@ function playPause() {
     playBtn.textContent = '⏸️';
     document.querySelector('.mp3-player').classList.add('playing');
 
-    // Estrellitas mágicas al reproducir
     for (let i = 0; i < 3; i++) {
       const sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
@@ -133,7 +132,6 @@ function playPause() {
       document.body.appendChild(sparkle);
       setTimeout(() => sparkle.remove(), 1800);
     }
-
   } else {
     audio.pause();
     playBtn.textContent = '▶️';
@@ -165,17 +163,16 @@ document.getElementById('prevTrack').addEventListener('click', prevTrack);
 window.addEventListener('load', () => {
   loadTrack(currentTrack);
   audio.volume = 0.3;
-
-  // Mostrar frase fija al entrar
   phraseBox.textContent = 'Eres mi ternura hecha persona.';
 });
+
+// --- Sorpresa mágica ---
 const btnSorpresa = document.getElementById('btnSorpresa');
 const sorpresaBox = document.getElementById('sorpresaBox');
 
 btnSorpresa.addEventListener('click', () => {
   sorpresaBox.classList.remove('oculto');
 
-  // Estrellitas mágicas al revelar
   for (let i = 0; i < 5; i++) {
     const sparkle = document.createElement('div');
     sparkle.className = 'sparkle';
