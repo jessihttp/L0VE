@@ -51,8 +51,7 @@ function showSection(name) {
   Object.values(buttons).forEach(btn => btn.classList.remove('active'));
   buttons[name].classList.add('active');
 
-  if (name === 'home') showRandomPhrase('home');
-  if (name === 'carta') showRandomPhrase('carta');
+  showRandomPhrase(name);
 }
 
 buttons.home.addEventListener('click', () => showSection('home'));
@@ -60,12 +59,15 @@ buttons.carta.addEventListener('click', () => showSection('carta'));
 buttons.musica.addEventListener('click', () => showSection('musica'));
 
 // --- Frases aleatorias ---
-const phraseBox = document.getElementById('phraseBox');
 function showRandomPhrase(page) {
   let pool = [];
   if (page === 'home') pool = loveShort;
   if (page === 'carta') pool = patience;
-  phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
+
+  const phraseBox = document.getElementById('phraseBox');
+  if (phraseBox) {
+    phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
+  }
 }
 
 // --- Galería de fotos ---
@@ -163,7 +165,7 @@ document.getElementById('prevTrack').addEventListener('click', prevTrack);
 window.addEventListener('load', () => {
   loadTrack(currentTrack);
   audio.volume = 0.3;
-  phraseBox.textContent = 'Eres mi ternura hecha persona.';
+  showRandomPhrase('home');
 });
 
 // --- Sorpresa mágica ---
@@ -171,7 +173,7 @@ const btnSorpresa = document.getElementById('btnSorpresa');
 const sorpresaBox = document.getElementById('sorpresaBox');
 
 btnSorpresa.addEventListener('click', () => {
-  sorpresaBox.classList.remove('oculto');
+  sorpresaBox.classList.toggle('oculto');
 
   for (let i = 0; i < 5; i++) {
     const sparkle = document.createElement('div');
