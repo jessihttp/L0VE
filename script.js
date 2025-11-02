@@ -152,3 +152,13 @@ window.addEventListener('load', () => {
   audio.volume = 0.3;
   showRandomPhrase(loveShort);
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const btnSorpresa = document.getElementById('btnSorpresa');
+  const sorpresaBox = document.getElementById('sorpresaBox');
+
+  if (btnSorpresa && sorpresaBox) {
+    btnSorpresa.addEventListener('click', () => {
+      sorpresaBox.classList.toggle('oculto');
+    });
+  }
+});
