@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
-  background: #ffeef4;
-  color: #444;
+  background: #fff0f5; /* rosa suave */
+  color: #333; /* mejor contraste */
 }
 
 h2, h3, h4 {
@@ -108,21 +108,22 @@ nav button.active {
   flex: 1;
 }
 
-/* Frases */
-.phrase {
+/* Frases y cajas */
+.phrase, .sorpresa, .side-box {
   font-family: 'Patrick Hand', cursive;
-  font-size: 1.2rem;
-  background: #fff0f5;
-  padding: 10px;
+  font-size: 1.1rem;
+  background: #ffe4ec;
+  padding: 12px;
   border-radius: 12px;
   box-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
   margin-top: 10px;
+  color: #444;
 }
 
 /* Galería */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
   padding: 20px;
   justify-items: center;
@@ -131,6 +132,8 @@ nav button.active {
 .photo img {
   width: 100%;
   max-width: 140px;
+  height: 140px;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 0 8px rgba(255, 182, 193, 0.6);
   transition: transform 0.3s ease;
@@ -159,14 +162,6 @@ nav button.active {
   font-size: 1rem;
   cursor: pointer;
   margin-top: 10px;
-}
-
-.sorpresa {
-  margin-top: 15px;
-  padding: 10px;
-  background: #fff0f5;
-  border-radius: 12px;
-  box-shadow: 0 0 6px rgba(255, 182, 193, 0.3);
 }
 
 .sorpresa img {
