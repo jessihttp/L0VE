@@ -217,3 +217,24 @@ section.show {
   margin-top: 20px;
   font-family: 'Patrick Hand', cursive;
 }
+.imagen-dulce {
+  width: 100%;
+  max-width: 240px;
+  border-radius: 12px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.2);
+}
+.screen img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.mini-banners img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
