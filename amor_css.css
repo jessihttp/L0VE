@@ -1,211 +1,223 @@
-/* Base */
-body {
+/* style.css */
+:root {
+  --bg1: #fff2f6;
+  --bg2: #fff8fb;
+  --accent: #ffb6d0;
+  --accent-2: #ffd6e7;
+  --card: #fff;
+  --text: #6b4350;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
   font-family: 'Nunito', sans-serif;
-  background: #fff6fa;
-  color: #444;
+  background: linear-gradient(120deg, var(--bg1), var(--bg2));
+  color: var(--text);
 }
 
-/* Títulos */
-h2, h3, h4 {
-  font-family: 'Indie Flower', cursive;
-  color: #d94f8c;
-}
-
-/* Contenedor principal */
 .wrap {
-  max-width: 1000px;
-  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #fff, #fffafc);
+  box-shadow: 0 18px 50px rgba(107, 67, 80, 0.12);
+  overflow: hidden;
+  position: relative;
   padding: 20px;
 }
 
-/* Encabezado */
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #ffe3ed;
+  justify-content: space-between;
   padding: 10px 20px;
-  border-radius: 12px;
-}
-
-.logo {
-  font-size: 1.8rem;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+  font-size: 26px;
 }
 
-.icon {
-  font-size: 1.5rem;
-}
-
-/* Navegación */
 nav {
   display: flex;
+  gap: 12px;
+  padding: 12px;
   justify-content: center;
-  margin: 20px 0;
-  gap: 10px;
 }
 
 nav button {
-  background: #ffd1e8;
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1rem;
+  background: linear-gradient(180deg, #fff, #fffafc);
   cursor: pointer;
+  font-weight: bold;
 }
 
 nav button.active {
-  background: #ff9dbb;
-  color: white;
+  background: linear-gradient(90deg, var(--accent-2), #fff);
 }
 
-/* Secciones */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
 .card {
-  display: none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-.card.show {
+.show {
   display: block;
 }
 
-/* Hero */
+section {
+  display: none;
+}
+
+section.show {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .hero {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
+  gap: 16px;
 }
 
-.art img {
-  max-width: 300px;
+.hero .art {
+  flex: 1 1 300px;
+  height: 200px;
   border-radius: 12px;
+  overflow: hidden;
 }
 
-.txt {
-  flex: 1;
+.hero .art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Frases */
-.phrase {
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.2rem;
-  background: #fff;
-  padding: 10px;
+.hero .txt {
+  flex: 1 1 200px;
+}
+
+.side-box {
+  background: linear-gradient(90deg, #fff, #fff8fb);
   border-radius: 12px;
+  padding: 12px;
   margin-top: 10px;
-  color: #444;
 }
 
-/* Galería */
+.side-box h4 {
+  font-family: 'Indie Flower', cursive;
+  margin-bottom: 8px;
+}
+
+.side-box .phrase {
+  margin-bottom: 6px;
+  padding: 8px;
+  background: #fff0f6;
+  border-radius: 10px;
+}
+
+.mini-banners {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-banners img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 12px;
-  padding: 20px;
-  justify-items: center;
+  margin-top: 10px;
+}
+
+.photo {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 120px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 200, 220, 0.4);
 }
 
 .photo img {
   width: 100%;
-  max-width: 140px;
-  height: 140px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
 }
 
-/* Carta */
-.imagen-dulce {
+.player.mp3-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.player.mp3-player .screen {
   width: 100%;
-  max-width: 180px;
+  max-width: 360px;
+  height: 200px;
   border-radius: 12px;
-  margin: 10px 0;
+  overflow: hidden;
 }
 
-/* Sorpresa */
-.btn-sorpresa {
-  background: #ffb6c1;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-family: 'Indie Flower', cursive;
-  font-size: 1rem;
-  cursor: pointer;
+.player.mp3-player .screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.sorpresa {
-  margin-top: 15px;
-  padding: 10px;
-  background: #fff;
-  border-radius: 12px;
-}
-
-.sorpresa img {
-  max-width: 200px;
-  display: block;
-  margin: 10px auto;
-}
-
-.oculto {
-  display: none;
-}
-
-/* Reproductor musical */
-.mp3-player {
-  background: #ffeef4;
-  border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.screen img {
-  max-width: 180px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
-.btn-row button {
-  background: #ffb6c1;
-  border: none;
-  padding: 8px 12px;
-  margin: 0 5px;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-#trackName {
-  font-family: 'Patrick Hand', cursive;
-  margin-top: 10px;
-  font-size: 1rem;
-}
-
-/* Mini banners */
-.mini-banners {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+.player-controls {
+  display: flex;
   gap: 10px;
-  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.mini-banners img {
-  width: 100%;
-  border-radius: 10px;
+.player-controls button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  cursor: pointer;
+  font-size: 18px;
 }
 
-/* Footer */
+.player-controls #trackName {
+  font-weight: bold;
+  margin-top: 6px;
+  text-align: center;
+}
+
 .footer {
   text-align: center;
-  font-family: 'Indie Flower', cursive;
-  font-size: 1.2rem;
-  margin-top: 30px;
-  padding: 10px;
-  background: #ffe3ed;
-  border-radius: 12px;
+  margin-top: 20px;
+  font-family: 'Patrick Hand', cursive;
 }
