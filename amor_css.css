@@ -177,15 +177,19 @@ section.show {
 .player.mp3-player .screen {
   width: 100%;
   max-width: 360px;
-  height: 200px;
   border-radius: 12px;
   overflow: hidden;
+  text-align: center;
 }
 
 .player.mp3-player .screen img {
   width: 100%;
-  height: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 .player-controls {
@@ -217,21 +221,26 @@ section.show {
   margin-top: 20px;
   font-family: 'Patrick Hand', cursive;
 }
+
+/* Imágenes dulces en la carta */
 .imagen-dulce {
-  width: 100%;
   max-width: 240px;
+  width: 100%;
+  height: auto;
   border-radius: 12px;
   margin: 10px auto;
   display: block;
   box-shadow: 0 4px 12px rgba(255, 182, 193, 0.2);
 }
-.screen img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
+
+/* Mini banners */
+.mini-banners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
+
 .mini-banners img {
   width: 100px;
   height: 60px;
