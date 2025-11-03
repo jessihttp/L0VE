@@ -152,3 +152,12 @@ window.addEventListener('load', () => {
   audio.volume = 0.3;
   showRandomPhrase(loveShort);
 });
+// Botón Ver Sorpresa
+document.getElementById("sorpresa").addEventListener("click", function() {
+  const contenido = document.getElementById("sorpresa-contenido");
+  if (contenido.style.display === "none" || contenido.style.display === "") {
+    contenido.style.display = "block";
+  } else {
+    contenido.style.display = "none";
+  }
+});
