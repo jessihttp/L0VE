@@ -65,31 +65,36 @@ buttons.musica.addEventListener('click', () => showSection('musica'));
 // --- Galería de fotos ---
 const imgs = ['yop.jpg', 'us.jpg', 'tuyyo.jpg', '22.jpg', 'LL.jpg', 'H.jpg', 'L.jpg', 'B.jpg', 'jh.jpg', 'jj.png', 'N.jpg', 'Ñ.jpg', 'O.jpg', 'Y.jpg'];
 const gallery = document.getElementById('gallery');
-imgs.forEach(name => {
-  const div = document.createElement('div');
-  div.className = 'photo';
-  const img = document.createElement('img');
-  img.src = name;
-  img.alt = name;
-  div.appendChild(img);
-  gallery.appendChild(div);
 
-  div.addEventListener('mouseenter', () => {
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.textContent = '💖';
-        heart.style.position = 'absolute';
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.top = Math.random() * 100 + '%';
-        heart.style.fontSize = (12 + Math.random() * 18) + 'px';
-        div.appendChild(heart);
-        setTimeout(() => heart.remove(), 1200);
-      }, i * 150);
-    }
+if (gallery) {
+  imgs.forEach(name => {
+    const div = document.createElement('div');
+    div.className = 'photo';
+    const img = document.createElement('img');
+    img.src = name;
+    img.alt = name;
+    div.appendChild(img);
+    gallery.appendChild(div);
+
+    // Corazones flotantes
+    div.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.textContent = '💖';
+          heart.style.position = 'absolute';
+          heart.style.left = Math.random() * 100 + '%';
+          heart.style.top = Math.random() * 100 + '%';
+          heart.style.fontSize = (12 + Math.random() * 18) + 'px';
+          heart.style.pointerEvents = 'none';
+          div.appendChild(heart);
+          setTimeout(() => heart.remove(), 1200);
+        }, i * 150);
+      }
+    });
   });
-});
+}
 
 // --- Reproductor MP3 ---
 const audio = document.getElementById('audioPlayer');
@@ -102,6 +107,7 @@ const tracks = [
   { file: 'SL.mp3', img: 'KL.jpg' },
   { file: 'MM.mp3', img: 'NAVI.jpg' }
 ];
+
 let currentTrack = 0;
 
 function loadTrack(index) {
@@ -134,30 +140,29 @@ function prevTrack() {
   playBtn.textContent = '⏸️';
 }
 
-playBtn.addEventListener('click', playPause);
-document.getElementById('nextTrack').addEventListener('click', nextTrack);
-document.getElementById('prevTrack').addEventListener('click', prevTrack);
+if (playBtn) {
+  playBtn.addEventListener('click', playPause);
+}
+const nextBtn = document.getElementById('nextTrack');
+const prevBtn = document.getElementById('prevTrack');
+if (nextBtn && prevBtn) {
+  nextBtn.addEventListener('click', nextTrack);
+  prevBtn.addEventListener('click', prevTrack);
+}
 
 // --- Sorpresa mágica ---
 const btnSorpresa = document.getElementById('btnSorpresa');
 const sorpresaBox = document.getElementById('sorpresaBox');
 
-btnSorpresa.addEventListener('click', () => {
-  sorpresaBox.classList.toggle('oculto');
-});
+if (btnSorpresa && sorpresaBox) {
+  btnSorpresa.addEventListener('click', () => {
+    sorpresaBox.classList.toggle('oculto');
+  });
+}
 
 // --- Inicio automático ---
 window.addEventListener('load', () => {
   loadTrack(currentTrack);
-  audio.volume = 0.3;
+  if (audio) audio.volume = 0.3;
   showRandomPhrase(loveShort);
-});
-// Botón Ver Sorpresa
-document.getElementById("sorpresa").addEventListener("click", function() {
-  const contenido = document.getElementById("sorpresa-contenido");
-  if (contenido.style.display === "none" || contenido.style.display === "") {
-    contenido.style.display = "block";
-  } else {
-    contenido.style.display = "none";
-  }
 });
