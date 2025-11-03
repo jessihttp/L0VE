@@ -25,12 +25,6 @@ const patience = [
   'Tu personalidad es mi lugar seguro.'
 ];
 
-const extras = [
-  'Eres mi canción favorita en repeat.',
-  'Si me pierdo, búscame en tus brazos.',
-  'Gracias por ser mi lugar seguro.'
-];
-
 // --- Secciones ---
 const sections = {
   home: document.getElementById('home'),
@@ -51,8 +45,7 @@ function showSection(name) {
   Object.values(buttons).forEach(btn => btn.classList.remove('active'));
   buttons[name].classList.add('active');
 
-  if (name === 'home') showRandomPhrase('home');
-  if (name === 'carta') showRandomPhrase('carta');
+  showRandomPhrase(name);
 }
 
 buttons.home.addEventListener('click', () => showSection('home'));
@@ -60,12 +53,22 @@ buttons.carta.addEventListener('click', () => showSection('carta'));
 buttons.musica.addEventListener('click', () => showSection('musica'));
 
 // --- Frases aleatorias ---
-const phraseBox = document.getElementById('phraseBox');
 function showRandomPhrase(page) {
   let pool = [];
-  if (page === 'home') pool = loveShort;
-  if (page === 'carta') pool = patience;
-  phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
+  let targetBox = null;
+
+  if (page === 'home') {
+    pool = loveShort;
+    targetBox = document.getElementById('phraseBox');
+  }
+  if (page === 'carta') {
+    pool = patience;
+    targetBox = document.getElementById('phraseBoxCarta');
+  }
+
+  if (targetBox) {
+    targetBox.textContent = pool[Math.floor(Math.random() * pool.length)];
+  }
 }
 
 // --- Galería de fotos ---
@@ -80,7 +83,6 @@ imgs.forEach(name => {
   div.appendChild(img);
   gallery.appendChild(div);
 
-  // corazones al pasar el mouse
   div.addEventListener('mouseenter', () => {
     for (let i = 0; i < 5; i++) {
       setTimeout(() => {
@@ -113,7 +115,7 @@ let currentTrack = 0;
 
 function loadTrack(index) {
   audio.src = tracks[index].file;
-  trackName.textContent = tracks[index].file;
+  trackName.textContent = tracks[index].file.replace('.mp3', '');
   trackImage.src = tracks[index].img;
 }
 
@@ -159,11 +161,10 @@ playBtn.addEventListener('click', playPause);
 document.getElementById('nextTrack').addEventListener('click', nextTrack);
 document.getElementById('prevTrack').addEventListener('click', prevTrack);
 
-// Autoplay inicial
 window.addEventListener('load', () => {
   loadTrack(currentTrack);
   audio.volume = 0.3;
-  phraseBox.textContent = 'Eres mi ternura hecha persona.';
+  showRandomPhrase('home');
 });
 
 // --- Sorpresa mágica ---
