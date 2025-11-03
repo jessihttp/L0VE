@@ -325,4 +325,16 @@ section.card.show {
 /* Caja sorpresa */
 .sorpresa {
   margin-top: 12px;
-  padding
+  padding: 12px;
+  background: #fff0f6;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 120, 150, 0.1);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Estado oculto */
+.oculto {
+  display: none;
+}
