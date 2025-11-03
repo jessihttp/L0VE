@@ -25,6 +25,12 @@ const patience = [
   'Tu personalidad es mi lugar seguro.'
 ];
 
+const extras = [
+  'Eres mi canción favorita en repeat.',
+  'Si me pierdo, búscame en tus brazos.',
+  'Gracias por ser mi lugar seguro.'
+];
+
 // --- Secciones ---
 const sections = {
   home: document.getElementById('home'),
@@ -45,56 +51,52 @@ function showSection(name) {
   Object.values(buttons).forEach(btn => btn.classList.remove('active'));
   buttons[name].classList.add('active');
 
-  if (name === 'home') showRandomPhrase(loveShort);
-  if (name === 'carta') showRandomPhrase(patience);
+  if (name === 'home') showRandomPhrase('home');
+  if (name === 'carta') showRandomPhrase('carta');
 }
 
-// --- Frases aleatorias ---
-function showRandomPhrase(pool) {
-  const phraseBox = document.getElementById('phraseBox');
-  if (phraseBox) {
-    phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
-  }
-}
-
-// --- Navegación ---
 buttons.home.addEventListener('click', () => showSection('home'));
 buttons.carta.addEventListener('click', () => showSection('carta'));
 buttons.musica.addEventListener('click', () => showSection('musica'));
 
+// --- Frases aleatorias ---
+const phraseBox = document.getElementById('phraseBox');
+function showRandomPhrase(page) {
+  let pool = [];
+  if (page === 'home') pool = loveShort;
+  if (page === 'carta') pool = patience;
+  phraseBox.textContent = pool[Math.floor(Math.random() * pool.length)];
+}
+
 // --- Galería de fotos ---
 const imgs = ['yop.jpg', 'us.jpg', 'tuyyo.jpg', '22.jpg', 'LL.jpg', 'H.jpg', 'L.jpg', 'B.jpg', 'jh.jpg', 'jj.png', 'N.jpg', 'Ñ.jpg', 'O.jpg', 'Y.jpg'];
 const gallery = document.getElementById('gallery');
+imgs.forEach(name => {
+  const div = document.createElement('div');
+  div.className = 'photo';
+  const img = document.createElement('img');
+  img.src = name;
+  img.alt = name;
+  div.appendChild(img);
+  gallery.appendChild(div);
 
-if (gallery) {
-  imgs.forEach(name => {
-    const div = document.createElement('div');
-    div.className = 'photo';
-    const img = document.createElement('img');
-    img.src = name;
-    img.alt = name;
-    div.appendChild(img);
-    gallery.appendChild(div);
-
-    // Corazones flotantes
-    div.addEventListener('mouseenter', () => {
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          const heart = document.createElement('div');
-          heart.className = 'heart';
-          heart.textContent = '💖';
-          heart.style.position = 'absolute';
-          heart.style.left = Math.random() * 100 + '%';
-          heart.style.top = Math.random() * 100 + '%';
-          heart.style.fontSize = (12 + Math.random() * 18) + 'px';
-          heart.style.pointerEvents = 'none';
-          div.appendChild(heart);
-          setTimeout(() => heart.remove(), 1200);
-        }, i * 150);
-      }
-    });
+  // corazones al pasar el mouse
+  div.addEventListener('mouseenter', () => {
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = '💖';
+        heart.style.position = 'absolute';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = Math.random() * 100 + '%';
+        heart.style.fontSize = (12 + Math.random() * 18) + 'px';
+        div.appendChild(heart);
+        setTimeout(() => heart.remove(), 1200);
+      }, i * 150);
+    }
   });
-}
+});
 
 // --- Reproductor MP3 ---
 const audio = document.getElementById('audioPlayer');
@@ -107,7 +109,6 @@ const tracks = [
   { file: 'SL.mp3', img: 'KL.jpg' },
   { file: 'MM.mp3', img: 'NAVI.jpg' }
 ];
-
 let currentTrack = 0;
 
 function loadTrack(index) {
@@ -120,9 +121,21 @@ function playPause() {
   if (audio.paused) {
     audio.play();
     playBtn.textContent = '⏸️';
+    document.querySelector('.mp3-player').classList.add('playing');
+
+    for (let i = 0; i < 3; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.textContent = '✨';
+      sparkle.style.left = (window.innerWidth / 2 + (Math.random() * 100 - 50)) + 'px';
+      sparkle.style.top = (window.innerHeight / 2 + (Math.random() * 60 - 30)) + 'px';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1800);
+    }
   } else {
     audio.pause();
     playBtn.textContent = '▶️';
+    document.querySelector('.mp3-player').classList.remove('playing');
   }
 }
 
@@ -131,6 +144,7 @@ function nextTrack() {
   loadTrack(currentTrack);
   audio.play();
   playBtn.textContent = '⏸️';
+  document.querySelector('.mp3-player').classList.add('playing');
 }
 
 function prevTrack() {
@@ -138,31 +152,34 @@ function prevTrack() {
   loadTrack(currentTrack);
   audio.play();
   playBtn.textContent = '⏸️';
+  document.querySelector('.mp3-player').classList.add('playing');
 }
 
-if (playBtn) {
-  playBtn.addEventListener('click', playPause);
-}
-const nextBtn = document.getElementById('nextTrack');
-const prevBtn = document.getElementById('prevTrack');
-if (nextBtn && prevBtn) {
-  nextBtn.addEventListener('click', nextTrack);
-  prevBtn.addEventListener('click', prevTrack);
-}
+playBtn.addEventListener('click', playPause);
+document.getElementById('nextTrack').addEventListener('click', nextTrack);
+document.getElementById('prevTrack').addEventListener('click', prevTrack);
+
+// Autoplay inicial
+window.addEventListener('load', () => {
+  loadTrack(currentTrack);
+  audio.volume = 0.3;
+  phraseBox.textContent = 'Eres mi ternura hecha persona.';
+});
 
 // --- Sorpresa mágica ---
 const btnSorpresa = document.getElementById('btnSorpresa');
 const sorpresaBox = document.getElementById('sorpresaBox');
 
-if (btnSorpresa && sorpresaBox) {
-  btnSorpresa.addEventListener('click', () => {
-    sorpresaBox.classList.toggle('oculto');
-  });
-}
+btnSorpresa.addEventListener('click', () => {
+  sorpresaBox.classList.remove('oculto');
 
-// --- Inicio automático ---
-window.addEventListener('load', () => {
-  loadTrack(currentTrack);
-  if (audio) audio.volume = 0.3;
-  showRandomPhrase(loveShort);
+  for (let i = 0; i < 5; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.textContent = '✨';
+    sparkle.style.left = (window.innerWidth / 2 + (Math.random() * 100 - 50)) + 'px';
+    sparkle.style.top = (window.innerHeight / 2 + (Math.random() * 60 - 30)) + 'px';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1800);
+  }
 });
